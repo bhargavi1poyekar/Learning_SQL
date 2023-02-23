@@ -1,0 +1,50 @@
+What is a database?
+=> collection of data, and holds it in form of tables
+----------------------------------------------------------
+What is table?
+storing data in form of rows and columns
+
+It is similar to excel 
+
+database>>> excel=> can join data from multiple tables 
+
+database=> access and manipulate the data
+------------------------------------------------------------
+
+Types of database: 
+1. Relational => form of rows and columns and tables are related 
+MySQL => commonly used
+SQL server
+PostreSQL
+SQLite
+MariaDB
+
+2. NoSQL => Key value, documents, graph
+Hbase
+MongoDB
+cassandra
+--------------------------------------------------------------
+
+SQL => Structures Query Language => deals with structured data =>used to query a relational database
+
+MySQL => relational database 
+
+-------------------------------------------------------------------
+
+goormIDE -> create container-> stack node.js-> install sql and sql commandline
+
+run container-> in terminal write-> mysql-ctl cli
+
+--------------------------------------------------------------------
+
+DDL(Data Definition language) vs DML (Data Manipulation language)
+
+DDL => changes/defines table structure => alter, create, drop, truncate 
+
+=> truncate=>drops the table and recreates it.
+
+DML => deal with actual data => insert, update, delete, select
+
+=> delete=> deletes record individually one by one
+---------------------------------------------------------------------
+

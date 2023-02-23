@@ -1,0 +1,90 @@
+--Primary key, Unique keys, primary vs unique, auto increment keys.
+
+--Primary key constraint => uniquely identify each record in the table
+
+CREATE TABLE employee
+(
+    id int PRIMARY KEY,
+    firstname varchar(20) NOT NULL,
+    middlename varchar(20),
+    lastname varchar(20) NOT NULL ,
+    age int NOT NULL,
+    salary int NOT NULL,
+    location varchar(20) Default 'Bangalore' NOT NULL
+);
+
+INSERT INTO employee(id,firstname,middlename,lastname,age,salary,location) 
+VALUES (1,'Mrunal','Sunil','Poyekar',27,50000,'Thane');
+
+--Primary key doesn't allow duplicates and NULL
+
+--Another way to define primary key
+CREATE TABLE employee
+(
+    id int AUTO_INCREMENT,
+    firstname varchar(20) NOT NULL,
+    middlename varchar(20),
+    lastname varchar(20) NOT NULL ,
+    age int NOT NULL,
+    salary int NOT NULL,
+    location varchar(20) Default 'Bangalore' NOT NULL,
+    PRIMARY KEY(id)
+);
+
+-- Composite primary key => combination of columns for primary key
+
+CREATE TABLE employee
+(
+    id int,
+    firstname varchar(20) NOT NULL,
+    middlename varchar(20),
+    lastname varchar(20) NOT NULL ,
+    age int NOT NULL,
+    salary int NOT NULL,
+    location varchar(20) Default 'Bangalore' NOT NULL,
+    PRIMARY KEY(id, name)
+);
+
+CREATE TABLE employee
+(
+    firstname varchar(20) NOT NULL,   
+    lastname varchar(20) NOT NULL ,
+    age int NOT NULL,
+    PRIMARY KEY(firstname,lastname)
+);
+
+-- Auto Increment => Dont need to give the value manually, it will automatically be 
+--assigned by incrementing the value from previous record.
+
+CREATE TABLE employee
+(
+    id int AUTO_INCREMENT,
+    firstname varchar(20) NOT NULL,
+    middlename varchar(20),
+    lastname varchar(20) NOT NULL ,
+    age int NOT NULL,
+    salary int NOT NULL,
+    location varchar(20) Default 'Bangalore' NOT NULL,
+    PRIMARY KEY(id)
+);
+
+-- Unique Key
+
+=>you can have only one primary key and primary key cannot have null values 
+=> Primary key uniquely identifies a record.
+
+=> But unique key can have null values.
+=> in MySQL => can have any number of null values
+=> in some other databases=> only 1 null value is allowed.
+
+=> purpose of unique key=> value should not duplicate => example=> email
+=> only 1 primary key, but can have multiple unique keys
+
+CREATE TABLE employee
+(
+    id int PRIMARY KEY,
+    firstname varchar(20) NOT NULL,   
+    lastname varchar(20) NOT NULL ,
+    age int NOT NULL,
+    email varchar(30) Unique Key
+);

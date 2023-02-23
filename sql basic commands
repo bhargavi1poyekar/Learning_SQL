@@ -1,0 +1,41 @@
+Database Level:
+
+show databases; => shows already available databases
+
+CREATE DATABASE <database name>;
+
+DROP DATABASE <database name>;
+
+USE <database name>; => go inside the database
+
+SELECT database(); => tells which database are we inside
+-------------------------------------------------------------
+
+Table :
+
+(datatypes => int for numeric, varchar for string) => most common
+
+=> creates table (we should be inside a database, when we create table, otherwise error)
+(If we are not inside a database and trying to create a table=> write "create table <database_name>.<table_name>")
+
+CREATE TABLE employee
+    (
+        Name varchar(50),
+        Age INT,
+        Salary INT
+    );
+
+=> SHOW TABLES; => shows list of tables
+
+=> Structure of the table => DESCRIBE <table name>;
+    or DESC <employee>
+
+=> drop table <tablename>; => deletes the table
+
+
+
+ 
+
+
+
+

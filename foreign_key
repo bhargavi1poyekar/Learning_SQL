@@ -1,0 +1,42 @@
+--Foreign key constraint
+
+=> used to prevent actions that would destroy links between 2 tables
+=> field in one table that refers to a primary key in another table
+=> table with foreign key=> child, and table with primary=> parent
+
+
+Create table students
+(
+    student_id int AUTO_INCREMENT,
+    selected_course int NOT NULL Default 1,
+    student_fname varchar(30) NOT NULL,
+    student_lname varchar(30) NOT NULL,
+    student_mname varchar(30) ,
+    student_email varchar(30) NOT NULL,
+    student_phone varchar(15) NOT NULL,
+    student_alternate_phone varchar(15),
+    enrollment_date TIMESTAMP NOT NULL,
+    years_of_exp int NOT NULL,
+    student_company varchar(20),
+    batch_date varchar(30) NOT NULL,
+    source_of_joining varchar(30) NOT NULL,
+    location varchar(30) NOT NULL,
+    Primary key(student_id),
+    Unique key(student_email),
+    Foreign key(selected_course) references courses(course_id)
+);
+
+Create table courses
+(
+    course_id int AUTO_INCREMENT,
+    course_name varchar(30) NOT NULL,
+    course_duration_months int NOT NULL,
+    course_fee int NOT NULL,
+    Primary key(course_id)
+);
+
+
+parent-courses
+child- students
+
+cannot delete parent record, which are used by child

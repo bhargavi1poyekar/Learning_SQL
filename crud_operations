@@ -1,0 +1,73 @@
+--Covered -> CRUD intro, insert statements, single and multiple inserts, NULl and NOT NULL, Default. 
+
+-- CRUD Operations
+
+-- create - insert statements
+-- read - select statements
+-- update - update statements 
+-- delete - delete statements
+
+-- DDl -> definition command (not related to data)
+
+CREATE TABLE employee
+(
+    firstname varchar(20),
+    middlename varchar(20),
+    lastname varchar(20),
+    age int,
+    salary int,
+    location varchar(20)
+);
+
+select * from employee; -- shows data of table 
+
+-- Insert data:
+
+INSERT INTO employee VALUES ('Kapil','Kumar','Sharma',28,10000,'Mumbai');
+
+-- Good practice to mention the column names: 
+
+INSERT INTO employee(firstname,middlename,lastname,age,salary,location) 
+VALUES ('Kapil','Kumar','Sharma',28,10000,'Mumbai');
+
+-- Can skip any column, but mention the columnnames to be inserted
+INSERT INTO employee(firstname, lastname,age,salary,location) 
+VALUES ('Rajesh','Shah',29,20000,'Mumbai');
+
+-- If we want to use single quote in the values => 'Rajesj's' => use double quotes for outer quotes
+--or use backslack before the inside quote=> 'Rajesh\'s'
+
+---Insert multiple records:
+
+INSERT INTO employee(firstname,middlename,lastname,age,salary,location) 
+VALUES ('Mrunal','Sunil','Poyekar',27,50000,'Thane'), ('Bhargavi','Sunil','Poyekar',22,12000,'US');
+
+--NULL: Some columns cannot have null values:
+
+CREATE TABLE employee
+(
+    firstname varchar(20) NOT NULL,
+    middlename varchar(20),
+    lastname varchar(20) NOT NULL ,
+    age int NOT NULL,
+    salary int NOT NULL,
+    location varchar(20) NOT NULL
+);
+
+-- Default Values:
+
+-- If not mentioned, consider some value as default
+
+CREATE TABLE employee
+(
+    firstname varchar(20) NOT NULL,
+    middlename varchar(20),
+    lastname varchar(20) NOT NULL ,
+    age int NOT NULL,
+    salary int NOT NULL,
+    location varchar(20) Default 'Bangalore' NOT NULL
+);
+
+
+
+

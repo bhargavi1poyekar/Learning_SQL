@@ -1,0 +1,32 @@
+--update (Data manipulation)
+
+update employee set lastname='Poyekar' where firstname='Bhargavi';
+update employee set location='Thane' where firstname='Anita';
+--if where clause not given in the update, it will change the update value for all records
+
+update employee set salary=salary+5000;
+
+--multiple clauses:
+update employee set location='Mumbai' where firstname='Anita' and lastname='Poyekar';
+
+-------------------------------------------------------------------------------------------
+
+--Delete
+
+delete from employee where id=3;
+
+delete from employee;--=>Deletes all the records
+truncate from employee => deletes all records
+
+-------------------------------------------------------------------------------------------
+
+-- ALter  (structure/schema manipulation)
+Updates the structure
+
+alter table employee add column jobtitle varchar(20);
+alter table employee drop column jobtitle;
+
+alter table employee modify column firstname varchar(30);
+
+alter table employee drop Primary key;
+alter table employee add Primary key(id);

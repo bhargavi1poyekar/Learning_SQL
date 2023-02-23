@@ -1,0 +1,31 @@
+CREATE TABLE employee
+(
+    id int AUTO_INCREMENT,
+    firstname varchar(20) NOT NULL,
+    middlename varchar(20),
+    lastname varchar(20) NOT NULL ,
+    age int NOT NULL,
+    salary int NOT NULL,
+    location varchar(20) Default 'Bangalore' NOT NULL,
+    PRIMARY KEY(id)
+);
+
+INSERT INTO employee(firstname,middlename,lastname,age,salary,location) 
+VALUES ('Mrunal','Sunil','Poyekar',27,50000,'Thane');
+
+-- Show all columns and rows:
+Select * from employee;
+
+--select specific columns:
+Select firstname, lastname from employee;
+
+--select with where condition
+Select * from employee where age>25;
+Select * from employee where firstname='mrunal'; => case insensitive
+
+Select * from employee where binary firstname='mrunal'; => case sensitive => returns empty set
+
+-- ALias (When showing the records, renames the column name, not in original table)
+Select firstname as name, lastname as surname from employee;
+
+
