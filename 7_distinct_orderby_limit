@@ -1,0 +1,85 @@
+--Distinct, Order by, Limit, Like
+
+distinct => find all distinct values in a column
+
+select DISTINCT location from students;
+
+---------------------------------------
+
+--Order by : order the records in ascending or descending order based on given column
+
+select firstname, lastname, years_of_exp from students ORDER BY years_of_exp; 
+-- can order by a column, which doesnt need to be displayed in select column
+
+order by=> for string=> alphabetical order (lexicographical)
+=> for int=> based on number
+
+descending order=> select firstname, lastname, years_of_exp from students ORDER BY years_of_exp DESC;
+
+Can mention column number of select statements
+select firstname, lastname, years_of_exp from students ORDER BY 3 DESC; -(here 3 means years_of_exp)
+
+-- 2 level sorting=> can mention 2 columns in Order By years_of_exp, lastname;
+=> this sorts all the columns by first column first and then sorts the duplicate values of in column 1 
+by the column 2
+
+3 Brian
+3 Carl
+3 Cats
+4 Brute
+4 Ghe
+5 GGh
+6 bhu
+8 h
+
+-> here first it is sorted by years and then the 3 is duplicate, so in that, the order will be decided by
+firstname
+
+---------------------------------------------------------------------------------------------------------
+
+-- Limit:
+
+Limits the number of records to be displayed
+
+Select * from students limit 3;
+
+select * from students ORDER BY years_of_exp limit 3;
+-> get 3 students with least years_of_exp
+
+select * from students ORDER BY years_of_exp desc limit 3;
+-> get 3 students with most years_of_exp
+
+select source_of_joining from students ORDER BY enrollment_date desc limit 5;
+-> source of joining of 5 students who have joined the last.
+
+select student_id, student_fname from students ORDER BY enrollment_date desc limit 1;
+-> candidate who joined last
+
+
+Limit 0,3 => start from 0th record and give 3 records after it (1,2,3)
+Limit 3,2=> start from 3rd record and give 2 records after it (4,5)
+
+------------------------------------------------------------------------------------------------------
+
+Like: (Not exact match) => starts with, ends with, matches pattern
+
+select * from students where student_fname LIKE '%ra%'; => name containes 'ra'
+
+% -> anything (wildcard)
+_ -> any single character
+
+Eg:
+=> 'ra%' start with 'ra'
+=> '%at' ends with 'at'
+=> '_____' have 5 char 
+
+-------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+

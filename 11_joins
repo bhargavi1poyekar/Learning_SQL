@@ -1,0 +1,34 @@
+--Joins
+
+2 tables: 
+courses -> parent
+students -> child 
+
+=> query : want to know which course enrolled by a particular person
+
+for join, the common column between 2 tables (may not have same name)
+
+select students.student_fname, students.student_lname, courses.course_name from students JOIN courses
+ON students.selected_course= courses.course_id ;
+
+=> by default-> join is inner join => only common part 
+
+(left join) in query
+=> Left outer join=> matching part+ non matching part of left tables => right table value will be null
+
+(right join) in query
+=> Right outer join=> matching part+ non matching part of right tables => left table values will be null
+
+=> full outer join => matching+non matching of right+non matching of left
+
+=> my sql doesn't have full outer join, to simulate, we can take union of left outer join and right outer join
+query
+union
+query
+
+=> union removes duplicated, and gives only distinct values 
+
+
+
+
+

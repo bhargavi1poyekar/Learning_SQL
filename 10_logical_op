@@ -1,0 +1,32 @@
+--Logical Operators
+
+=  -> equal to
+!= -> not equal to
+
+not (not like)
+
+and (intersect multiple conditions)
+
+or => eg: years_of exp<8 or years_of_exp>12
+
+between => eg: years_of_exp not between 8 and 12
+
+in => student_company in ('flipkart','walmart','google')
+
+categorize based on value:
+eg: course_duration>4=> masters, else diploma
+
+Use CASE
+
+select course_id, course_name, course_fee,
+CASE
+WHEN course_duration_months>4 then 'masters'
+ELSE 'diploma' 
+END as course_type 
+from courses;
+
+-- there can be multiple WHEN then statements in a CASE
+
+
+
+

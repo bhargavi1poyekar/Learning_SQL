@@ -1,0 +1,62 @@
+-- Aggregate functions
+
+clubbing few things and getting one output
+
+input n rows-> output 1
+-------------------------------------------------------------------------------------------------------
+--Count :
+
+Select count(*) from students; => tells how many rows are present in the table.
+
+Select count(DISTINCT student_company) from students; => count of distinct companies
+ 
+Select count(DISTINCT student_company) as num_companies from students; => alias to num_companies
+
+Select count(DISTINCT location) from students;
+
+select count(*) from students where batch_date Like '%-02%-'; => count of students joined in february
+
+---------------------------------------------------------------------------------------------------------
+
+--Group By : group the data based on some logic
+
+Select source_of_joining, count(*) from students Group By source_of_joining; => count for each group
+
+Select location, count(*) from students Group By location; => the group by column should be present in select
+
+select location, source_of_joining, count(*) from students Group By location, source_of_joining;
+-- group by 2 columns (unique pairs will be counted)
+
+---------------------------------------------------------------------------------------------------------
+
+-- Min and Max 
+
+select Min(years_of_exp) from students; => what is the min experience a student has.
+
+To find the student who has thw min exp => this wont work => 
+select Min(years_of_exp), student_fname from students;
+
+because, min is independent, and we are not mentioning that we want studentfname of person with min exp
+
+to find that, use order by and limit=>
+select student_fname from students ORDER BY years_of_exp limit 1;
+
+
+for each source_of_joining find max exp=>
+select source_of_joining, Max(years_of_exp) from students GROUP BY source_of_joining;
+----------------------------------------------------------------------------------------------------------
+
+-- Sum
+
+Find sum of total exp for each source of source_of_joining
+select source_of_joining, Sum(years_of_exp) from students GROUP BY source_of_joining;
+
+---------------------------------------------------------------------------------------------------------
+--Avg
+
+Avg exp of people from each source_of_joining
+select source_of_joining, Avg(years_of_exp) from students GROUP BY source_of_joining;
+
+
+
+

@@ -1,0 +1,7 @@
+over and partition by to select columns which are independent of the aggregation (non-aggregated columns)
+
+select firstname, lastname, location, count(location) OVER (partition by location), 
+avg(salary) OVER (partition by location) from employee
+
+
+

@@ -1,0 +1,16 @@
+-- Row Number
+
+select firstname, lastname, salary , row_number(), over (ORDER by salary desc) from employee table
+
+=> order by ->mandatory when using row Number
+
+
+select firstname, lastname,location, salary , row_number(), over (partition by location ORDER 
+by salary desc) from employee;
+
+-> gives row numbering for each group 
+
+select * from (select firstname, lastname,location, salary , row_number(), over (partition by location ORDER 
+by salary desc) as rownum from employee) temptable where rownum=1;
+
+

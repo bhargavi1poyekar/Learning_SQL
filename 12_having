@@ -1,0 +1,27 @@
+--Where vs Having
+
+=> where clause used to filter individual records, before aggregation (mostly group by)
+=> Having does same like where, but can be used with aggregation (mostly group by) => filters out aggregated records
+
+select source_of_joining, count(*) as total from students Group By source_of_joining having total>1;
+
+select source_of_joining, count(*) as total from students Group By source_of_joining 
+having source_of_joining=='Linkedin'; => longer time because first groups by everything and then filter out
+
+instead: first filter out linkedin and then group by it  => optimized
+
+select source_of_joining, count(*) as total from students where source_of_joining=='Linkedin' 
+Group By source_of_joining; 
+
+
+--------------------------------------------------
+
+--where and having in same query:
+
+locations from which more than 1 student has joined, but student exp >10
+
+Select location, count(*) as total from students where years_of_exp>10 Group BY location having total>1
+
+
+
+

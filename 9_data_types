@@ -1,0 +1,15 @@
+-- Data types
+
+int
+varchar
+
+Timestamp => TIMESTAMP default NOW() on UPDATE NOW()
+=> while inserting gives current timestamp, and updates whenever the record is updated
+=> NOW() can be replaced with CURRENT TIMESTAMP()
+
+
+decimal(param1, param2) => param1: max total digits (before and after), param2: max digits after decimal 
+eg: decimal(3,1) => 12.5, 22.3, 43.2, 1.2
+
+
+
