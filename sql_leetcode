@@ -1,19 +1,19 @@
-Employees Earning More Than Their Managers
+1. Employees Earning More Than Their Managers:
 
 Select e1.name as Employee from Employee e1 inner join Employee e2 ON
 e1.managerId=e2.id where e1.salary>e2.salary;
 
 -------------------------------------------------------------------------
 
-Duplicate Emails:
-Write an SQL query to report all the duplicate emails. Note that it's guaranteed that the 
+2. Duplicate Emails:
+Write an SQL query to report all the duplicate emails. Note that it is guaranteed that the 
 email field is not NULL.
 
 Select email as Email from Person group by email having count(email)>1
 
 -------------------------------------------------------------------------
 
-Customers who never order:
+3. Customers who never order:
 Write an SQL query to report all customers who never order anything.
 
 Select Customers.name as Customers from Customers left join Orders ON
@@ -21,7 +21,7 @@ Customers.id=Orders.customerId where Orders.id is null
 
 -------------------------------------------------------------------------
 
-Delete Duplicate Emails:
+4. Delete Duplicate Emails:
 
 Write an SQL query to delete all the duplicate emails, keeping only one unique email with the 
 smallest id. Note that you are supposed to write a DELETE statement and not a SELECT one.
@@ -30,23 +30,23 @@ delete p1 from Person p1, Person p2 where p1.email=p2.email and p1.id>p2.id;
 
 ------------------------------------------------------------------------------
 
-Rising Temperature:
+5. Rising Temperature:
 
-Write an SQL query to find all dates' Id with higher temperatures compared to its previous dates 
+Write an SQL query to find all dates Id with higher temperatures compared to its previous dates 
 (yesterday).
 
 Select w1.id from Weather w1, Weather w2 where datediff(w1.recordDate,w2.recordDate)=1 
 and w1.temperature>w2.temperature
 -------------------------------------------------------------------------------
 
-Find Customer Referee:
+6. Find Customer Referee:
 Write an SQL query to report the names of the customer that are not referred by the customer with id = 2.
 
 Select name from Customer where referee_id!=2 or referee_id is null;   
 
 ------------------------------------------------------------------------------------------------------
 
-Customer Placing the Largest Number of Orders:
+7. Customer Placing the Largest Number of Orders:
 Write an SQL query to find the customer_number for the customer who has placed the largest 
 number of orders.
 
@@ -54,7 +54,7 @@ Select customer_number from Orders group by customer_number ORDER by count(custo
 
 -------------------------------------------------------------------------------------------------------
 
-Big Countries:
+8. Big Countries:
 
 A country is big if:
 it has an area of at least three million (i.e., 3000000 km2), or
@@ -66,7 +66,7 @@ Select name, population, area from World where area>=3000000 or population>=2500
 
 --------------------------------------------------------------------------------------------------------
 
-Classes more than 5 students:
+9. Classes more than 5 students:
 
 Write an SQL query to report all the classes that have at least five students.
 
@@ -74,7 +74,7 @@ Select class from Courses Group By class having count(student)>=5;
 
 ---------------------------------------------------------------------------------------------------------
 
-Second Highest Salary:
+10. Second Highest Salary:
 
 Write an SQL query to report the second highest salary from the Employee table. 
 If there is no second highest salary, the query should report null.
@@ -83,7 +83,7 @@ Select MAX(salary) as SecondHighestSalary from Employee where salary<(Select MAX
 
 --------------------------------------------------------------------------------------------------------
 
-Rank Scores:
+11. Rank Scores:
 
 Write an SQL query to rank the scores. The ranking should be calculated according to the following rules:
 
@@ -96,7 +96,7 @@ Select score, DENSE_RANK() over(ORDER BY score desc) as 'rank' from Scores;
 
 ----------------------------------------------------------------------------------------------------------
 
-Department Highest Salary:
+12. Department Highest Salary:
 
 Write an SQL query to find employees who have the highest salary in each of the departments.
 
@@ -108,7 +108,7 @@ as temp where rownum=1;
 
 ---------------------------------------------------------------------------------------------------------
 
-Consecutive Numbers:
+13. Consecutive Numbers:
 
 Write an SQL query to find all numbers that appear at least three times consecutively.
 
@@ -117,7 +117,7 @@ l1.num=l2.num and l2.id=l1.id-1 and l3.num=l1.num and l3.id=l1.id+1;
 
 ----------------------------------------------------------------------------------------------------------
 
-Tree Node:
+14. Tree Node:
 
 Each node in the tree can be one of three types:
 
@@ -134,3 +134,208 @@ else 'Leaf'
 end as "Type" from Tree;
 
 ------------------------------------------------------------------------------------------------------------
+
+15. Game Play Analysis:
+
+Write an SQL query to report the first login date for each player.
+
+SELECT player_id, min(event_date) as first_login from Activity group by player_id;
+
+------------------------------------------------------------------------------------------------------------
+
+16. Sales Person:
+
+Write an SQL query to report the names of all the salespersons who did not have any orders 
+related to the company with the name "RED".
+
+Select name from SalesPerson where sales_id not in (Select Orders.sales_id from Orders join Company on 
+Orders.com_id=Company.com_id where Company.name='RED');  
+
+---------------------------------------------------------------------------------------------------------
+
+17. Not Boring Movies:
+
+Write an SQL query to report the movies with an odd-numbered ID and a description that is not "boring".
+Return the result table ordered by rating in descending order.
+
+Select * from Cinema where mod(id,2)!=0 and description!='boring' ORDER by rating desc;
+
+---------------------------------------------------------------------------------------------------------
+
+18. Actors and Directors Who Cooperated At Least Three Times:
+
+Write a SQL query for a report that provides the pairs (actor_id, director_id) where the actor has 
+cooperated with the director at least three times.
+
+Select actor_id,director_id from ActorDirector group by actor_id, director_id having count(*)>=3;
+
+--------------------------------------------------------------------------------------------------------
+
+19. Sales Analysis III:
+
+Write an SQL query that reports the products that were only sold in the first quarter of 2019. 
+That is, between 2019-01-01 and 2019-03-31 inclusive.
+
+Select p.product_id, p.product_name from Product p join Sales s on p.product_id=s.product_id 
+group by p.product_id having max(sale_date) between '2019-01-01' and '2019-03-31' and min(sale_date) 
+between '2019-01-01' and '2019-03-31';
+
+--------------------------------------------------------------------------------------------------------
+
+20. User Activity for the Past 30 Days I:
+
+Write an SQL query to find the daily active user count for a period of 30 days ending 2019-07-27 inclusively.
+A user was active on someday if they made at least one activity on that day.
+
+Select activity_date as day, count(distinct user_id) as active_users from Activity 
+where activity_date >'2019-06-27' and activity_date <='2019-07-27' Group by activity_date ;
+
+-------------------------------------------------------------------------------------------------------------
+
+21. Top Travellers:
+
+Write an SQL query to report the distance traveled by each user.
+
+Return the result table ordered by travelled_distance in descending order,
+ if two or more users traveled the same distance, order them by their name in ascending order.
+
+Select name, sum(case when u.id=r.user_id then distance else 0 end) as travelled_distance from 
+Users u left join Rides r on u.id=r.user_id group by u.id order by sum(distance) desc, name asc;
+
+-----------------------------------------------------------------------------------------------------------
+
+22. Group Sold Products By The Date:
+
+Write an SQL query to find for each date the number of different products sold and their names.
+The sold products names for each date should be sorted lexicographically.
+
+Select sell_date, count(distinct product) as num_sold, group_concat(distinct product) as 
+products from activities group by sell_date;
+
+------------------------------------------------------------------------------------------------------------
+
+23. Patients With a Condition:
+
+Write an SQL query to report the patient_id, patient_name and conditions of the patients who have Type I Diabetes. 
+Type I Diabetes always starts with DIAB1 prefix.
+
+Select patient_id, patient_name, conditions from Patients where conditions like '%DIAB1%' 
+and conditions not like '__DIAB1%'; 
+
+-----------------------------------------------------------------------------------------------------------
+
+24. Customer Who Visited but Did Not Make Any Transactions:
+
+Write a SQL query to find the IDs of the users who visited without making any transactions and the 
+number of times they made these types of visits.
+
+Select v.customer_id, count(v.visit_id) as count_no_trans from Visits v left join Transactions t on 
+v.visit_id=t.visit_id where t.visit_id is null group by v.customer_id;
+
+-------------------------------------------------------------------------------------------------------------
+
+25. Bank Account Summary 2:
+
+Write an SQL query to report the name and balance of users with a balance higher than 10000. 
+The balance of an account is equal to the sum of the amounts of all transactions involving that account.
+
+Select name, sum(amount) as balance from Users join Transactions on Users.account=Transactions.account 
+group by transactions.account having sum(amount)>10000;
+-----------------------------------------------------------------------------------------------------------
+
+26. Daily Leads and Partners:
+
+Write an SQL query that will, for each date_id and make_name, 
+return the number of distinct lead_id's and distinct partner_id's.
+
+Select date_id, make_name, count(distinct lead_id) as unique_leads, count(distinct partner_id) 
+as unique_partners
+from DailySales group by date_id, make_name;
+---------------------------------------------------------------------------------------------------------
+
+27. Find Followers Count:
+
+Write an SQL query that will, for each user, return the number of followers.
+
+Return the result table ordered by user_id in ascending order.
+
+Select user_id, count(follower_id) as followers_count  from Followers group by user_id order by user_id;
+
+--------------------------------------------------------------------------------------------------------
+
+28. Find Total Time Spent by Each Employee:
+
+Write an SQL query to calculate the total time in minutes spent by each employee on each day at the office. 
+Note that within one day, an employee can enter and leave more than once. 
+The time spent in the office for a single entry is out_time - in_time.
+
+Select event_day as day, emp_id, sum(out_time-in_time) as total_time from Employees group by event_day,
+emp_id ;
+
+----------------------------------------------------------------------------------------------------------
+29. Recyclable and Low Fat Products:
+
+Write an SQL query to find the ids of products that are both low fat and recyclable.
+
+Select product_id from Products where low_fats='Y' and recyclable='Y';
+
+-------------------------------------------------------------------------------------------------------------
+
+30. Calculate Special Bonus:
+
+Write an SQL query to calculate the bonus of each employee. The bonus of an employee is 100% of their salary if 
+the ID of the employee is an odd number and the employee name does not start with the character 'M'. 
+The bonus of an employee is 0 otherwise.
+
+Return the result table ordered by employee_id.
+
+Select employee_id, 
+(CASE when mod(employee_id,2)=1 and name not like 'M%' then salary else 0 end) as bonus
+from Employees ORDER BY employee_id;
+
+----------------------------------------------------------------------------------------------------------------------
+31. The Latest Login in 2020:
+
+Write an SQL query to report the latest login for all users in the year 2020. 
+Do not include the users who did not login in 2020.
+
+Select user_id, max(time_stamp) as last_stamp from Logins where time_stamp like '2020-%' group by user_id;
+--------------------------------------------------------------------------------------------------------------
+
+32. Employees With Missing Information:
+
+Write an SQL query to report the IDs of all the employees with missing information. 
+The information of an employee is missing if:
+The employee's name is missing, or
+The employee's salary is missing.
+Return the result table ordered by employee_id in ascending order.
+
+
+Select E.employee_id from Employees E left join Salaries S on E.employee_id=S.employee_id where S.salary 
+is null
+UNION
+Select S.employee_id from Employees E right join Salaries S on E.employee_id=S.employee_id where 
+E.name is null order by employee_id;
+
+---------------------------------------------------------------------------------------------------------
+33. Market Analysis I:
+
+Write an SQL query to find for each user, the join date and the number of orders they made as a 
+buyer in 2019.
+
+Select u.user_id as buyer_id, u.join_date,count(case when year(order_date)='2019' then o.order_id end) 
+as orders_in_2019 from Users u left join Orders o on u.user_id=o.buyer_id group by u.user_id;
+
+----------------------------------------------------------------------------------------------------------
+34. Capital Gain/Loss:
+
+Write an SQL query to report the Capital gain/loss for each stock.
+
+The Capital gain/loss of a stock is the total gain or loss after buying and selling the stock one 
+or many times.
+
+Select stock_name, sum(case when operation ='Buy' then -price else price end) as capital_gain_loss 
+from Stocks group by stock_name;
+
+----------------------------------------------------------------------------------------------------------
+
